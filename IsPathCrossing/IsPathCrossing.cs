@@ -32,8 +32,7 @@ class Solution
         int x = 0;
         int y = 0;
 
-        HashSet<string> visited = new();
-        visited.Add("0,0");
+        HashSet<string> visited = new() { "0,0" };
 
         foreach (char c in path)
         {
