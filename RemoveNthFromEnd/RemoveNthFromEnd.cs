@@ -5,15 +5,15 @@ class Solution
     static void Main()
     {
         // Example 1:
-        
+
         // Input: head = [1,2,3,4,5], n = 2
         // Output: [1,2,3,5]
-        
+
         // Example 2:
 
         // Input: head = [1], n = 1
         // Output: []
-        
+
         // Example 3:
 
         // Input: head = [1,2], n = 1
@@ -31,18 +31,17 @@ class Solution
         ListNode c1 = new(1, c2);
 
         Solution solution = new();
-        
+
         PrintList(solution.RemoveNthFromEnd(a1, 2));
         PrintList(solution.RemoveNthFromEnd(b1, 1));
         PrintList(solution.RemoveNthFromEnd(c1, 1));
-        
     }
 
     public ListNode RemoveNthFromEnd(ListNode head, int n)
     {
         ListNode dummy = new();
         dummy.next = head;
-        
+
         ListNode fast = dummy;
         ListNode slow = dummy;
 
@@ -63,10 +62,18 @@ class Solution
         ListNode curr = listNode;
         while (true)
         {
-            Console.Write($"{curr.val}, ");
-            if (curr.next == null) break;
-            curr = curr.next;
+            try
+            {
+                Console.Write($"{curr.val}, ");
+                curr = curr.next;
+            }
+            catch (NullReferenceException)
+            {
+                break;
+            }
         }
+
+        Console.WriteLine();
     }
 }
 
