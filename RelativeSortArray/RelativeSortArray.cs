@@ -24,33 +24,24 @@ class Solution
     public int[] RelativeSortArray(int[] arr1, int[] arr2)
     {
         Dictionary<int, int> freq = new();
-        int lastInArr2 = int.MinValue;
         foreach (int i in arr2)
         {
             freq.Add(i, 0);
-            lastInArr2 = i;
         }
 
+        Array.Sort(arr1);
         foreach (int i in arr1)
         {
             if (!freq.TryAdd(i, 1)) freq[i]++;
         }
 
         List<int> output = new();
-        List<int> notInArr2 = new();
-        bool isOutsideArr2 = false;
+
         foreach (KeyValuePair<int, int> pair in freq)
         {
-            if (!isOutsideArr2)
-            {
-                for (int i = 0; i < pair.Value; i++) output.Add(pair.Key);
-                if (pair.Key == lastInArr2) isOutsideArr2 = true;
-            }
-            else for (int i = 0; i < pair.Value; i++) notInArr2.Add(pair.Key);
+            for (int i = 0; i < pair.Value; i++) output.Add(pair.Key);
         }
 
-        notInArr2.Sort();
-        foreach (int i in notInArr2) output.Add(i);
         return output.ToArray();
     }
 
